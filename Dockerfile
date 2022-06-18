@@ -1,13 +1,11 @@
-FROM node:latest
+FROM node:18
 
-WORKDIR /app
-ADD . / /app/
+WORKDIR /usr/src/frontend
 
+COPY package*.json ./
 RUN npm install
-RUN npm config set scripts-prepend-node-path auto
+COPY . .
 
-WORKDIR /app
-EXPOSE 80
-ENV PORT=80
-ENV REACT_APP_BACKEND_URL="https://ecommerceproject9back.azurewebsites.net"
+EXPOSE 3000
+
 CMD ["npm",  "start"]
